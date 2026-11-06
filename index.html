@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Explore curated robotics, autonomy, computer vision and AI opportunities in Australia and selected overseas roles. Browse research and industry roles and apply directly with employers." />
+  <meta name="theme-color" content="#102b3d" />
+  <title>Robotics & AI Jobs Australia</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header wrap">
+      <a class="brand" href="#top" aria-label="Robotics and AI Jobs Australia home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none"><path d="M20 8.5 30.5 15v11L20 32.5 9.5 26V15L20 8.5Z" stroke="currentColor" stroke-width="2.25"/><circle cx="20" cy="20.5" r="4" fill="currentColor"/><path d="M20 16.5V8.5M24 20.5h6.5M16 20.5H9.5M20 24.5v8" stroke="currentColor" stroke-width="2"/></svg>
+        </span>
+        <span class="brand-copy"><strong>Robotics & AI</strong><small>JOBS AUSTRALIA</small></span>
+      </a>
+      <nav class="header-links" aria-label="Main navigation">
+        <a href="#opportunities">Browse jobs</a>
+        <a href="#about">About this board</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow"><span class="eyebrow-dot"></span> AUSTRALIAN RESEARCH & INDUSTRY CAREERS + SELECTED GLOBAL ROLES</span>
+            <h1>Find your next role in <span>robotics and AI.</span></h1>
+            <p>A curated selection of jobs in robotics, autonomy, computer vision, robot learning, navigation and applied research — from university labs to startups and global companies.</p>
+            <a class="primary-button" href="#opportunities">Explore opportunities <span aria-hidden="true">↗</span></a>
+          </div>
+          <aside class="hero-aside" aria-label="Jobs board overview">
+            <div class="orbit-decoration" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><span class="orbit-core">✳</span><i class="sat sat-one"></i><i class="sat sat-two"></i><i class="sat sat-three"></i></div>
+            <div class="hero-aside-content">
+              <span class="hero-aside-label">THE OPPORTUNITY LANDSCAPE</span>
+              <div class="hero-stat"><strong id="hero-count">—</strong><span>curated listings</span></div>
+              <div class="hero-aside-divider"></div>
+              <div class="hero-mini-stats"><div><strong id="hero-companies">—</strong><span>organisations</span></div><div><strong id="hero-locations">—</strong><span>locations</span></div></div>
+              <div class="hero-date">Last listing check: <strong id="hero-checked">—</strong></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="opportunities wrap" id="opportunities" aria-labelledby="jobs-heading">
+        <div class="section-header">
+          <div><span class="section-kicker">EXPLORE ROLES</span><h2 id="jobs-heading">Curated opportunities</h2><p>Filter by your interests. Every card links to a public job posting; vacancy status may change.</p></div>
+          <div class="live-indicator"><span class="live-dot"></span> Curated, not automatically synced</div>
+        </div>
+        <div class="filter-panel">
+          <div class="search-row">
+            <label class="search-box" for="search">
+              <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+              <input id="search" type="search" placeholder="Search title, company, skill or keyword..." autocomplete="off" />
+            </label>
+          </div>
+          <div class="filter-grid">
+            <label><span>Location</span><select id="location-filter"><option value="">All locations</option></select></label>
+            <label><span>Area</span><select id="focus-filter"><option value="">All areas</option></select></label>
+            <label><span>Employer</span><select id="sector-filter"><option value="">All employer types</option></select></label>
+            <label><span>PhD</span><select id="phd-filter"><option value="">All qualifications</option><option value="required">PhD required</option><option value="valued">PhD required or preferred</option><option value="unspecified">Not specifically requested</option></select></label>
+          </div>
+          <div class="filter-bottom"><span id="result-count" aria-live="polite">Loading jobs...</span><button type="button" id="clear-filters">Clear filters <span aria-hidden="true">×</span></button></div>
+        </div>
+
+        <div class="jobs-grid" id="jobs-grid" aria-live="polite" aria-busy="true">
+          <div class="loading-card">Loading available opportunities…</div>
+        </div>
+        <div id="empty-state" class="empty-state" hidden><span aria-hidden="true">⌕</span><h3>No matching roles</h3><p>Try another location, sector or research area.</p><button type="button" id="empty-reset" class="secondary-button">Reset filters</button></div>
+        <div id="error-state" class="error-state" role="alert" hidden>Could not load <code>jobs.csv</code>. If you're opening the files on your computer, run a local web server or upload them to GitHub Pages. See README.md.</div>
+      </section>
+
+      <section class="about-section" id="about">
+        <div class="wrap about-grid">
+          <div><span class="section-kicker">ABOUT THE BOARD</span><h2>Research, industry, and everything in between.</h2><p>Built as a starting point for researchers and students exploring careers in Australia, with a small number of international examples. Listings are selected manually, not collected from a live jobs API. We include positions that don't require a PhD, as well as roles where doctoral research experience is particularly relevant.</p></div>
+          <div class="about-notes"><div><span class="about-note-icon">↗</span><div><strong>Apply with the employer</strong><p>Links lead to employer, recruiter or accessible public job-posting pages, including mirrors for some recruitment sites.</p></div></div><div><span class="about-note-icon">✓</span><div><strong>Check details before applying</strong><p>Listings were checked when published to this board, but may close or be removed without notice. Any unverified link is visibly marked.</p></div></div><div><span class="about-note-icon">⌁</span><div><strong>Easy to update</strong><p>The board is powered by a single <code>jobs.csv</code> file in GitHub.</p></div></div></div>
+        </div>
+      </section>
+    </main>
+    <footer><div class="wrap footer-inner"><span>Robotics & AI Jobs Australia</span><span>Independent curated directory · <span id="footer-date">Listings reviewed periodically</span></span></div></footer>
+  </div>
+</body>
+</html>
