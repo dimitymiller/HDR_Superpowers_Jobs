@@ -1,6 +1,6 @@
-# Robotics & AI Jobs Australia — GitHub Pages website
+# Robotics & AI Jobs — Australia & Worldwide — GitHub Pages website
 
-A self-contained, mobile-friendly public jobs directory. This version contains **15 carefully selected listings supplied by the site owner**; 13 are based in Australia, one is remote worldwide, and one is in the USA. The last review was **6 November 2026**. One additional supplied LinkedIn link was a generic redirect for expired vacancies, so it was **not** added.
+A self-contained, mobile-friendly public jobs directory. Updated 10 November 2026 with 18 additional overseas positions, for 33 listings total (15 original + 18 international). International opportunities include the US, UK, Switzerland, Germany, Poland and Canada. Entries with a known closing date are automatically hidden once the deadline passes; others need periodic verification.
 
 ## Publish without installing anything
 
@@ -24,7 +24,7 @@ A self-contained, mobile-friendly public jobs directory. This version contains *
 1. On GitHub, open **jobs.csv** → pencil icon (Edit this file).
 2. Each row is one job. Use the same column order as the header:
 
-`id,title,company,location,state,sector,focus,phd,level,summary,url,deadline,checked,notes,status`
+`id,title,company,location,state,sector,focus,phd,level,summary,url,deadline,checked,notes,status,country`
 
 3. Copy an existing row to add a job; give it a **unique `id`**. Put commas inside **double-quoted CSV fields**. Spreadsheet apps such as Excel can also export CSV files.
 4. Save by clicking **Commit changes**. GitHub Pages will update automatically.
@@ -66,3 +66,9 @@ Then visit http://localhost:8000/ in a browser.
 - External links open in a separate tab; no user data is collected by the site.
 - Accessible labelled search/filter controls, responsive cards, URL validation and basic escaping through `textContent`.
 - The board is independently curated, not affiliated with any listed employer, and should not be described as a live feed of currently open jobs.
+
+## International additions (10 November 2026)
+
+18 new advertisements were added from Google DeepMind (3), Amazon Robotics (2), Toyota Research Institute, ANYbotics, FieldAI, Waabi, PlusAI, Physical Intelligence, Nomagic, Prime Intellect, ETH Zürich (2) and University of Oxford (3). The five academic posts have verified deadlines and will disappear automatically after those dates. One Physical Intelligence listing is flagged for manual verification because its application page requires JavaScript. For all roles, check the direct advertisement before applying.
+
+When updating, replace all five files in the repository root, rather than only `jobs.csv`, because this version adds the Country filter to `app.js` and `index.html`.

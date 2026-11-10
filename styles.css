@@ -4,3 +4,6 @@
 .card-note{font-size:11px;line-height:1.6;color:#738794;margin:11px 0 0}
 .tag.international{background:#f2ecfb;border-color:#e1d4f6;color:#6d488b}
 .tag.review{background:#fff1e7;border-color:#fad7bd;color:#9b5827}
+
+/* Five filters on desktop; existing responsive two-column rules apply on mobile/tablet. */
+@media(min-width:901px){.filter-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}

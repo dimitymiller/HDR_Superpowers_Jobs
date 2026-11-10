@@ -1,7 +1,7 @@
 // This website is deliberately framework-free. Edit jobs.csv to change the listings.
 const $ = (selector) => document.querySelector(selector);
 const filters = {
-  search: $('#search'), location: $('#location-filter'),
+  search: $('#search'), country: $('#country-filter'), location: $('#location-filter'),
   focus: $('#focus-filter'), sector: $('#sector-filter'), phd: $('#phd-filter'),
 };
 let allJobs = [];
@@ -67,7 +67,7 @@ function card(job) {
   article.appendChild(element('p','card-summary',job.summary));
   const tags = element('div','tag-row'); addTag(tags,job.focus);
   if (job.phd && job.phd !== 'Not specified') addTag(tags,`PhD: ${job.phd}`,'phd');
-  if (job.state === 'USA' || job.state === 'Worldwide remote') addTag(tags,'International / remote','international');
+  if (job.country && job.country !== 'Australia') addTag(tags,'International / remote','international');
   if (job.status === 'review') addTag(tags,'Link needs verification','review');
   if (job.deadline) addTag(tags,`Closes ${formatDate(job.deadline)}`,'deadline');
   article.appendChild(tags);
@@ -95,6 +95,7 @@ function matchesPhd(job, selection) {
 function render() {
   const q = filters.search.value.trim().toLowerCase();
   const filtered = allJobs.filter(job =>
+    (!filters.country.value || (job.country || '').split('|').map(v => v.trim()).includes(filters.country.value)) &&
     (!filters.location.value || job.state === filters.location.value) &&
     (!filters.focus.value || job.focus === filters.focus.value) &&
     (!filters.sector.value || job.sector === filters.sector.value) &&
@@ -113,12 +114,13 @@ async function init() {
     const parsed = parseCSV(await response.text());
     allJobs = parsed.filter(job => ['active','review'].includes((job.status || '').toLowerCase()) && validUrl(job.url) && !dateIsPast(job.deadline));
     allJobs.sort((a,b) => (b.checked || '').localeCompare(a.checked || '') || a.company.localeCompare(b.company) || a.title.localeCompare(b.title));
+    addOptions(filters.country,allJobs.flatMap(j => (j.country || '').split('|').map(s => s.trim())));
     addOptions(filters.location,allJobs.map(j => j.state));
     addOptions(filters.focus,allJobs.map(j => j.focus));
     addOptions(filters.sector,allJobs.map(j => j.sector));
     $('#hero-count').textContent = String(allJobs.length);
     $('#hero-companies').textContent = String(new Set(allJobs.map(j => j.company)).size);
-    $('#hero-locations').textContent = String(new Set(allJobs.map(j => j.state)).size);
+    $('#hero-locations').textContent = String(new Set(allJobs.flatMap(j => (j.country || '').split('|').map(s => s.trim()))).size);
     const lastChecked = allJobs.map(j => j.checked).filter(Boolean).sort().at(-1);
     $('#hero-checked').textContent = lastChecked ? formatDate(lastChecked) : 'Not recorded';
     $('#footer-date').textContent = lastChecked ? `Latest check ${formatDate(lastChecked)}` : 'Listings reviewed periodically';
@@ -132,4 +134,3 @@ Object.values(filters).forEach(field => field.addEventListener(field.tagName ===
 $('#clear-filters').addEventListener('click',reset);
 $('#empty-reset').addEventListener('click',reset);
 init();
-
